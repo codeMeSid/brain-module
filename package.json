@@ -1,6 +1,6 @@
 {
   "name": "brain-module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "service module for all my plays and exploits",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -12,7 +12,8 @@
   "author": "siddy",
   "license": "MIT",
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "deploy": "yarn build && yarn publish"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
