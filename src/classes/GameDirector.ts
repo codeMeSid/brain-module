@@ -17,7 +17,16 @@ export abstract class GameDirector {
   protected abstract _board: CanvasRenderingContext2D;
   // game physics
   protected abstract _scoring_func: ScoringFunc;
-  constructor() {}
+  constructor() {
+    this._init_ = this._init_.bind(this);
+    this._start_ = this._start_.bind(this);
+    this._reset_ = this._reset_.bind(this);
+    this._gameOver_ = this._gameOver_.bind(this);
+    this.drawBoard = this.drawBoard.bind(this);
+    this._handleInput_ = this._handleInput_.bind(this);
+    this._remove_eventListeners = this._remove_eventListeners.bind(this);
+    this.drawAsset = this.drawAsset.bind(this);
+  }
   // game methods
   // to initialize the game defaults
   public abstract _init_(
