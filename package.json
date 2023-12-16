@@ -1,6 +1,6 @@
 {
   "name": "brain-module",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "service module for all my plays and exploits",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
