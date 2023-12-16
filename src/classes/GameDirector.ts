@@ -36,7 +36,7 @@ export abstract class GameDirector {
   // game over
   protected abstract _gameOver_(): void;
   // to draw the board
-  protected abstract drawBoard(boardColor: Color): void;
+  protected abstract drawBoard(): void;
   // handle Movement
   protected abstract _handleInput_(ev: KeyboardEvent): void;
   // to remove all event listeners
