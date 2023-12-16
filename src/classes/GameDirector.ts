@@ -1,4 +1,4 @@
-type ScoringEvent = "update" | "reset" | "end";
+type ScoringEvent = "update" | "reset" | "end" | "add";
 type ScoringFunc = (
   scoringEvent: ScoringEvent,
   score: number,
