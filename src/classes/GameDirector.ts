@@ -1,24 +1,10 @@
-type ScoringEvent = "update" | "reset" | "end" | "add";
-type ScoringFunc = (
-  scoringEvent: ScoringEvent,
-  score: number,
-) => void;
-type GameSettings = {
-  fps: number;
-  boardColor: Color;
-  cellSize: number;
-  boardRowCount: number;
-  boardColCount: number;
-  boardDepCount: number;
-  timerId: number;
-};
-
-type RGB = `rgb(${number},${number},${number})`;
-type HEX = `#${string}`;
-type Color = RGB | HEX | string;
-
-export type AssetPosition = { x: number; y: number; z: number };
-export type AssetDimension = { w: number; h: number; d: number };
+import {
+  AssetDimension,
+  AssetPosition,
+  Color,
+  GameSettings,
+  ScoringFunc,
+} from "../types";
 
 export abstract class GameDirector {
   // game
