@@ -1,15 +1,16 @@
 {
   "name": "brain-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "service module for all my plays and exploits",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": "https://github.com/codeMeSid/playground.git",
   "author": "siddy",
   "license": "MIT",
-
   "scripts": {
     "build": "tsup"
   },
