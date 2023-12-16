@@ -1,11 +1,11 @@
-type ScoringEvent = "update" | "reset";
+type ScoringEvent = "update" | "reset" | "end";
 type ScoringFunc = (
   scoringEvent: ScoringEvent,
   score: number,
 ) => void;
 type GameSettings = {
   fps: number;
-  boardColor: number;
+  boardColor: Color;
   cellSize: number;
   boardRowCount: number;
   boardColCount: number;
@@ -14,7 +14,7 @@ type GameSettings = {
 };
 
 type RGB = `rgb(${number},${number},${number})`;
-type HEX = `#${number}${number}${number}${number}${number}${number}`;
+type HEX = `#${string}`;
 type Color = RGB | HEX | string;
 
 export type AssetPosition = { x: number; y: number; z: number };
@@ -47,6 +47,8 @@ export abstract class GameDirector {
   public abstract _start_(updatedSettings?: Partial<GameSettings>): void;
   // to reset the game
   public abstract _reset_(): void;
+  // game over
+  protected abstract _gameOver_(): void;
   // to draw the board
   protected abstract drawBoard(boardColor: Color): void;
   // handle Movement
