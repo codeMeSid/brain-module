@@ -28,13 +28,13 @@ export abstract class GameDirector {
   // to start the game
   public abstract _start_(updatedSettings?: Partial<GameSettings>): void;
   // to reset the game
-  public abstract _reset_: () => void;
+  public abstract _reset_(): void;
   // game over
-  protected abstract _gameOver_: () => void;
+  protected abstract _gameOver_(): void;
   // to draw the board
-  protected abstract drawBoard: () => void;
+  protected abstract drawBoard(): void;
   // handle Movement
-  protected abstract _handleInput_: (ev: KeyboardEvent) => {};
+  protected abstract _handleInput_(ev: KeyboardEvent): void;
   // to remove all event listeners
   protected _remove_eventListeners = () => {
     window.removeEventListener("keydown", this._handleInput_, false);
