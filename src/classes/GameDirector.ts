@@ -17,8 +17,8 @@ export abstract class GameDirector {
   protected abstract _board: CanvasRenderingContext2D;
   // game physics
   protected abstract _scoring_func: ScoringFunc;
+  constructor() {}
   // game methods
-
   // to initialize the game defaults
   public abstract _init_(
     boardRef: HTMLCanvasElement,
