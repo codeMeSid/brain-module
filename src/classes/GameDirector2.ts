@@ -7,13 +7,16 @@ import {
   ScoringFunc,
 } from "../types";
 
-export abstract class GameDirector2<AssetNameList extends Array<string>> {
+export abstract class GameDirector2<
+  AssetNameList extends Array<string>,
+  GameMetaDataList extends Array<string>,
+> {
   // game control
   protected abstract _game_settings: GameSettings;
   // board
   protected abstract _board: CanvasRenderingContext2D;
   // assets
-  protected abstract _game_asset: GameAssets<AssetNameList>;
+  protected abstract _game_asset: GameAssets<AssetNameList, GameMetaDataList>;
   // constructor
   constructor() {
     this._init_ = this._init_.bind(this);

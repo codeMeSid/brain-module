@@ -27,20 +27,27 @@ export type GameAssetPosition = { x: number; y: number };
 export type GameAssetVelocity = { xv: number; yv: number };
 export type GameAssetDimension = { w: number; h: number };
 
-export type GameAssetProperties = {
+export type GameAssetProperties<GameMetaDataList extends Array<string>> = {
   init_position: GameAssetPosition;
   init_velocity: GameAssetVelocity;
   default_size: GameAssetDimension;
   color: Color;
   position: GameAssetPosition;
   velocity: GameAssetVelocity;
-  metaData: Record<string, unknown>;
+  metaData: GameMetaDataProperties<GameMetaDataList>;
   reset: () => void;
 };
 
-export type GameAssets<AssetNameList extends Array<string>> = {
+export type GameMetaDataProperties<GameMetaDataList extends Array<string>> = {
+  [K in (GameMetaDataList extends ReadonlyArray<infer U> ? U : never)]: unknow;
+};
+
+export type GameAssets<
+  AssetNameList extends Array<string>,
+  GameMetaDataList extends Array<string>,
+> = {
   [K in (AssetNameList extends ReadonlyArray<infer U> ? U : never)]:
-    GameAssetProperties;
+    GameAssetProperties<GameMetaDataList>;
 };
 
 export type GameStartFunc = (settings?: Partial<GameSettings>) => void;
