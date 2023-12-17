@@ -11,6 +11,7 @@ export {
   GameAssetProperties,
   GameAssets,
   GameAssetVelocity,
+  GameMetaDataProperties,
   GameSettings,
   GameStartFunc,
   HEX,

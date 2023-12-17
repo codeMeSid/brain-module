@@ -34,12 +34,12 @@ export type GameAssetProperties<GameMetaDataList extends Array<string>> = {
   color: Color;
   position: GameAssetPosition;
   velocity: GameAssetVelocity;
-  metaData: GameMetaDataProperties<GameMetaDataList>;
-  reset: () => void;
+  metaData: GameMetaDataProperties<GameMetaDataList> | undefined;
+  reset: (() => void) | undefined;
 };
 
 export type GameMetaDataProperties<GameMetaDataList extends Array<string>> = {
-  [K in (GameMetaDataList extends ReadonlyArray<infer U> ? U : never)]: unknow;
+  [K in (GameMetaDataList extends ReadonlyArray<infer U> ? U : never)]: unknown;
 };
 
 export type GameAssets<
