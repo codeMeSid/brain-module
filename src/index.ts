@@ -1,10 +1,18 @@
 export { GameDirector } from "./classes/GameDirector";
+export { GameDirector2 } from "./classes/GameDirector2";
 // types
 export {
   AssetDimension,
   AssetPosition,
+  Assets,
   Color,
+  GameAssetDimension,
+  GameAssetPosition,
+  GameAssetProperties,
+  GameAssets,
+  GameAssetVelocity,
   GameSettings,
+  GameStartFunc,
   HEX,
   RGB,
   ScoringEvent,

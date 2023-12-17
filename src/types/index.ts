@@ -13,6 +13,7 @@ export type GameSettings = {
   boardColCount: number;
   boardDepCount: number;
   timerId: number;
+  scoringFunc: ScoringFunc;
 };
 
 export type RGB = `rgb(${number},${number},${number})`;
@@ -29,6 +30,7 @@ export type GameAssetDimension = { w: number; h: number };
 export type GameAssetProperties = {
   init_position: GameAssetPosition;
   init_velocity: GameAssetVelocity;
+  default_size: GameAssetDimension;
   color: Color;
   position: GameAssetPosition;
   velocity: GameAssetVelocity;
