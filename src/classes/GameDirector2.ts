@@ -36,6 +36,7 @@ export abstract class GameDirector2<
   protected abstract _handleInput_(ev: KeyboardEvent): void;
   protected abstract _checkGameOver_(): void;
   protected abstract _drawBoard_(): void;
+  protected abstract _checkGameStatus_(): void;
   protected generateRandomPosition = (): GameAssetPosition => ({
     x: Math.floor(Math.random() * this._game_settings.boardColCount) *
       this._game_settings.cellSize,
