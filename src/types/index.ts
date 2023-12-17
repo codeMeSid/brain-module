@@ -1,53 +1,43 @@
-export type Assets = Array<string>;
-
 export type ScoringEvent = "update" | "reset" | "end";
+export type GameStatus = "loading" | "start" | "inprogress" | "end";
 export type ScoringFunc = (
   scoringEvent: ScoringEvent,
   score: number,
 ) => void;
-export type GameSettings = {
+export type GameSettings<AssetNameList extends Array<string>> = {
   fps: number;
-  boardColor: Color;
+  assetColor: GameAssetsColor<AssetNameList>;
   cellSize: number;
   boardRowCount: number;
   boardColCount: number;
-  boardDepCount: number;
   timerId: number;
   scoringFunc: ScoringFunc;
 };
 
-export type RGB = `rgb(${number},${number},${number})`;
-export type HEX = `#${string}`;
-export type Color = RGB | HEX | string;
-
-export type AssetPosition = { x: number; y: number; z: number };
-export type AssetDimension = { w: number; h: number; d: number };
+export type Color = string;
 
 export type GameAssetPosition = { x: number; y: number };
-export type GameAssetVelocity = { xv: number; yv: number };
+export type GameAssetVelocity = { vx: number; vy: number };
 export type GameAssetDimension = { w: number; h: number };
 
-export type GameAssetProperties<GameMetaDataList extends Array<string>> = {
-  init_position: GameAssetPosition;
-  init_velocity: GameAssetVelocity;
-  default_size: GameAssetDimension;
-  color: Color;
+export type GameAssetProperties = {
+  initialPosition: GameAssetPosition;
+  initialvelocity: GameAssetVelocity;
+  unitSize: GameAssetDimension;
+  multiBodyPosition: Array<GameAssetPosition>;
   position: GameAssetPosition;
   velocity: GameAssetVelocity;
-  metaData: GameMetaDataProperties<GameMetaDataList> | undefined;
-  reset: (() => void) | undefined;
+  metaData: Record<string, any>;
+  reset: () => void;
 };
 
-export type GameMetaDataProperties<GameMetaDataList extends Array<string>> = {
-  [K in (GameMetaDataList extends ReadonlyArray<infer U> ? U : never)]: unknown;
+export type GameAssetsColor<AssetNameList extends Array<string>> = {
+  [K in (AssetNameList extends ReadonlyArray<infer U> ? U : never)]: Color;
 };
 
-export type GameAssets<
-  AssetNameList extends Array<string>,
-  GameMetaDataList extends Array<string>,
-> = {
+export type GameAssets<AssetNameList extends Array<string>> = {
   [K in (AssetNameList extends ReadonlyArray<infer U> ? U : never)]:
-    GameAssetProperties<GameMetaDataList>;
+    GameAssetProperties;
 };
 
-export type GameStartFunc = (settings?: Partial<GameSettings>) => void;
+export type GameStartFunc = (settings?: Partial<GameSettings<any>>) => void;

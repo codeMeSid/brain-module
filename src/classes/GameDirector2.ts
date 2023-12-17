@@ -4,19 +4,18 @@ import {
   GameAssetPosition,
   GameAssets,
   GameSettings,
+  GameStatus,
   ScoringFunc,
 } from "../types";
 
-export abstract class GameDirector2<
-  AssetNameList extends Array<string>,
-  GameMetaDataList extends Array<string>,
-> {
+export abstract class GameDirector2<AssetNameList extends Array<string>> {
   // game control
-  protected abstract _game_settings: GameSettings;
+  protected abstract _game_settings: GameSettings<AssetNameList>;
+  protected _game_status: GameStatus = "loading";
   // board
   protected abstract _board: CanvasRenderingContext2D;
   // assets
-  protected abstract _game_asset: GameAssets<AssetNameList, GameMetaDataList>;
+  protected abstract _game_asset: GameAssets<AssetNameList>;
   // constructor
   constructor() {
     this._init_ = this._init_.bind(this);
@@ -26,17 +25,22 @@ export abstract class GameDirector2<
     this._drawBoard_ = this._drawBoard_.bind(this);
     this.generateRandomPosition = this.generateRandomPosition.bind(this);
     this.renderOnBoard = this.renderOnBoard.bind(this);
+    this._checkGameStatus_ = this._checkGameStatus_.bind(this);
+    this._reset_ = this._reset_.bind(this);
   }
   // game methods
+  protected abstract _handleInput_(ev: KeyboardEvent | MouseEvent): void;
   public abstract _init_(
     boardRef: HTMLCanvasElement,
     scorer: ScoringFunc,
-  ): void; //: GameInitFunc;
-  public abstract _start_(settings?: Partial<GameSettings>): void;
-  protected abstract _handleInput_(ev: KeyboardEvent): void;
-  protected abstract _checkGameOver_(): void;
+  ): void;
+  public abstract _start_(
+    settings?: Partial<GameSettings<AssetNameList>>,
+  ): void;
+  public abstract _reset_(): void;
   protected abstract _drawBoard_(): void;
   protected abstract _checkGameStatus_(): void;
+  protected abstract _checkGameOver_(): void;
   protected generateRandomPosition = (): GameAssetPosition => ({
     x: Math.floor(Math.random() * this._game_settings.boardColCount) *
       this._game_settings.cellSize,
